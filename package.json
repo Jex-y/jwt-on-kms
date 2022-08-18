@@ -1,6 +1,6 @@
 {
   "name": "jwt-on-kms",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Create JWT tokens with a KMS key that can be verified without hitting the KMS API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
