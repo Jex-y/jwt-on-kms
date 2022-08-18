@@ -1,17 +1,24 @@
 {
-  "name": "aws-kms-jwt-offline",
-  "version": "1.0.0",
+  "name": "jwt-on-kms",
+  "version": "1.1.0",
   "description": "Create JWT tokens with a KMS key that can be verified without hitting the KMS API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest --config jest.config.js",
     "test:coverage": "jest --config jest.config.js --coverage",
+    "format": "prettier --write index.ts tests/*.ts",
+    "lint": "tslint -p tsconfig.json",
     "build": "rimraf ./dist & tsc"
   },
   "author": "Edward Jex",
   "license": "ISC",
   "git": "https://github.com/Jex-y/aws-kms-jwt",
+  "keywords": [
+    "jwt",
+    "kms",
+    "aws"
+  ],
   "dependencies": {
     "@aws-sdk/client-kms": "^3.137.0",
     "jose": "^4.8.3",
@@ -24,7 +31,10 @@
     "@types/node-rsa": "^1.1.1",
     "aws-sdk-client-mock": "^1.0.0",
     "jest": "^28.1.3",
+    "prettier": "^2.7.1",
     "ts-jest": "^28.0.7",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.7.4"
   }
 }

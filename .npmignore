@@ -29,3 +29,5 @@ Gruntfile.js
 tslint.json
 
 npm-debug.log
+
+coverage/

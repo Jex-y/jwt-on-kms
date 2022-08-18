@@ -99,12 +99,10 @@ class JWTSigner {
         })
       )
       .catch((err) => {
-        console.error(err);
         throw new Error('Failed to sign the payload');
       });
 
     if (!result.Signature) {
-      console.error('No signature found on SignCommand result');
       throw new Error('Failed to sign the payload');
     }
 
@@ -167,7 +165,6 @@ class JWTSigner {
 
     if (payload.exp) {
       const now = new Date().getTime() / 1000;
-      console.log(now, payload.exp);
       if (payload.exp < now) {
         return {
           isValid: false,
