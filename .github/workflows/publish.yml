@@ -18,6 +18,8 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - run: npm run minify
+      - run: mv ./dist/index.min.js ./dist/index.js
       - name: Upload Build
         uses: actions/upload-artifact@v3.1.0
         with:
