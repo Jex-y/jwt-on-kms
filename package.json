@@ -9,11 +9,12 @@
     "test:coverage": "jest --config jest.config.js --coverage",
     "format": "prettier --write index.ts tests/*.ts",
     "lint": "tslint -p tsconfig.json",
-    "build": "rimraf ./dist & tsc"
+    "build": "rimraf ./dist & tsc",
+    "pretest": "npm run lint"
   },
   "author": "Edward Jex",
   "license": "ISC",
-  "git": "https://github.com/Jex-y/aws-kms-jwt",
+  "git": "https://github.com/Jex-y/jwt-on-kms",
   "keywords": [
     "jwt",
     "kms",
