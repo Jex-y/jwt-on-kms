@@ -8,8 +8,8 @@ on:
     types: [created]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  test:
+  runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -17,6 +17,21 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm test
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm run build
+      - name: Upload Build
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: build
+          path: dist
 
   publish-npm:
     needs: build
@@ -27,7 +42,11 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
+      - name: Download a Build
+        uses: actions/download-artifact@v3.0.0
+        with:
+          name: build
+          path: dist
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

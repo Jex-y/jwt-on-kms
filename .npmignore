@@ -31,3 +31,10 @@ tslint.json
 npm-debug.log
 
 coverage/
+.github/
+tests/
+.prettierrc
+index.ts
+jest.config.js
+tsconfig.json
+tslint.json
