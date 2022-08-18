@@ -4,7 +4,6 @@ import {
   SignCommand,
   SigningAlgorithmSpec,
 } from '@aws-sdk/client-kms';
-import { verify } from 'jsonwebtoken';
 import { webcrypto } from 'crypto';
 
 const { subtle } = webcrypto;
