@@ -11,7 +11,7 @@
     "lint": "eslint",
     "build": "rimraf ./dist & tsc ",
     "minify": "uglifyjs ./dist/index.js -o ./dist/index.min.js -c -m",
-    "pretest": "npm run lint"
+    "pretest": "yarn lint"
   },
   "author": "Edward Jex",
   "license": "ISC",
