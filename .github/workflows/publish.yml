@@ -5,11 +5,11 @@ name: Node.js Package
 
 on:
   workflow_dispatch:
-  
+
 jobs:
   build:
-   needs: [test, semantic-release]
-   runs-on: ubuntu-latest
+    needs: [test, semantic-release]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
