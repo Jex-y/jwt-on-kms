@@ -8,7 +8,7 @@
     "test": "jest --config jest.config.js",
     "test:coverage": "jest --config jest.config.js --coverage",
     "format": "prettier --write index.ts tests/*.ts",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "eslint",
     "build": "rimraf ./dist & tsc ",
     "minify": "uglifyjs ./dist/index.js -o ./dist/index.min.js -c -m",
     "pretest": "npm run lint"
@@ -27,10 +27,10 @@
   "devDependencies": {
     "@types/jest": "^28.1.6",
     "aws-sdk-client-mock": "^1.0.0",
+    "eslint": "^8.22.0",
     "jest": "^28.1.3",
     "prettier": "^2.7.1",
     "ts-jest": "^28.0.7",
-    "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.7.4",
     "uglify-js": "^3.17.0"

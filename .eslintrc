@@ -1,0 +1,24 @@
+{
+  "env": {
+    "es2022": true
+  },
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-console": "warn",
+    "no-extra-parens": "warn",
+    "block-scoped-var": "warn",
+    "quotes": ["warn", "double"],
+    "no-var": "error",
+    "semi": ["warm", "always"],
+    "no-trailing-spaces": 0,
+    "eol-last": 0,
+    "no-underscore-dangle": 0,
+    "no-alert": 0,
+    "no-lone-blocks": 0
+  }
+}
