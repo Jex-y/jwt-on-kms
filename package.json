@@ -25,6 +25,11 @@
     "@aws-sdk/client-kms": "^3.137.0"
   },
   "devDependencies": {
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.5",
+    "@semantic-release/npm": "^9.0.1",
+    "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/jest": "^28.1.6",
     "aws-sdk-client-mock": "^1.0.0",
     "eslint": "^8.22.0",
@@ -47,6 +52,7 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/git",
+      "@semantic-release/npm",
       [
         "@semantic-release/github",
         {
@@ -61,8 +67,7 @@
             }
           ]
         }
-      ],
-      "@semantic-release/npm"
+      ]
     ]
   }
 }
