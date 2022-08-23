@@ -126,8 +126,6 @@ describe('JWTSigner', () => {
       expiresIn: 1,
     });
 
-    console.log(token);
-
     const payload = JSON.parse(
       Buffer.from(token.split('.')[1], 'base64url').toString()
     );
