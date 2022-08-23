@@ -10,7 +10,7 @@
     "format": "prettier --write index.ts tests/*.ts",
     "lint": "eslint",
     "build": "rimraf ./dist & tsc ",
-    "minify": "uglifyjs ./dist/index.js -o ./dist/index.min.js -c -m",
+    "minify": "uglifyjs ./dist/index.js -o ./dist/index.min.js -c -m && mv ./dist/index.min.js ./dist/index.js",
     "pretest": "yarn lint"
   },
   "author": "Edward Jex",
@@ -34,5 +34,33 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.7.4",
     "uglify-js": "^3.17.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jex-y/jwt-on-kms.git"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            {
+              "path": "dist/index.js",
+              "label": "index.js"
+            },
+            {
+              "path": "dist/index.d.ts",
+              "label": "index.d.ts"
+            }
+          ]
+        }
+      ]
+    ]
   }
 }
