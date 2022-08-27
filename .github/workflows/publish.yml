@@ -34,6 +34,7 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
+          
       - name: Download Build
         uses: actions/download-artifact@v3.0.0
         with:
@@ -43,5 +44,5 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: semantic-release
