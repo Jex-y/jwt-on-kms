@@ -21,7 +21,7 @@
     "kms",
     "aws"
   ],
-  "peerDependencies": {
+  "dependencies": {
     "@aws-sdk/client-kms": "^3.137.0"
   },
   "devDependencies": {
