@@ -39,6 +39,7 @@ jobs:
         with:
           name: build
           path: dist
+      - run: yarn global add @semantic-release/git
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
