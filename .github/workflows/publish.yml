@@ -40,7 +40,6 @@ jobs:
           name: build
           path: dist
       - run: yarn global add @semantic-release/git semantic-release
-      - run: rm /home/runner/work/_temp/.npmrc
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
