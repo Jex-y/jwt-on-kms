@@ -33,8 +33,6 @@ class JWTSigner {
       throw new Error('No key found');
     }
 
-    // return result.PublicKey;
-
     const key = await subtle.importKey(
       'spki',
       Buffer.from(result.PublicKey),
