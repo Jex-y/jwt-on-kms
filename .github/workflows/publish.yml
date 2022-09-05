@@ -18,7 +18,6 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn test
       - run: yarn build
-      - run: yarn minify
       - name: Upload Build
         uses: actions/upload-artifact@v3.1.0
         with:
@@ -34,7 +33,7 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
-          
+
       - name: Download Build
         uses: actions/download-artifact@v3.0.0
         with:
