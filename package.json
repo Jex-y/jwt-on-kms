@@ -9,8 +9,7 @@
     "test:coverage": "jest --config jest.config.js --coverage",
     "format": "prettier --write index.ts tests/*.ts",
     "lint": "eslint",
-    "build": "rimraf ./dist & tsc ",
-    "minify": "uglifyjs ./dist/index.js -o ./dist/index.min.js -c -m && mv ./dist/index.min.js ./dist/index.js",
+    "build": "rimraf ./dist & tsc",
     "pretest": "yarn lint"
   },
   "author": "Edward Jex",
@@ -33,8 +32,7 @@
     "prettier": "^2.7.1",
     "ts-jest": "^28.0.7",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^4.7.4",
-    "uglify-js": "^3.17.0"
+    "typescript": "^4.7.4"
   },
   "repository": {
     "type": "git",
