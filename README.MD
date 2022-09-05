@@ -5,7 +5,7 @@
 
 This package is designed to be able to verify JWT tokens offline by first downloading the public key from KMS. This is done to reduce latency and cost.
 
-Example:
+## Usage
 
 ```ts
 import JWTSigner from 'jwt-on-kms';
@@ -13,11 +13,16 @@ import { KMSClient } from '@aws-sdk/client-kms';
 
 const kmsClient = new KMSClient({});
 
-const { sign, verify } = new JWTSigner(kmsClient, process.env.KMS_KEY_ID);
+const { sign, verifyOffline } = new JWTSigner(kmsClient, process.env.KMS_KEY_ID);
 
 const signedToken = sign({
   hello: 'world',
 });
 
-const { isValid } = verify(signedToken);
+const { isValid } = verifyOffline(signedToken);
 ```
+
+## Bugs
+
+If you find a security vulnerability, please report it privately to me via [email](mailto:edwardjex@live.co.uk). Other bugs should be reported via GitHub.
+
