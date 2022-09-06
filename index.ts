@@ -8,7 +8,7 @@ import { webcrypto } from 'crypto';
 
 const { subtle } = webcrypto;
 
-module.exports = class JWTSigner {
+export default class JWTSigner {
   private client: KMSClient;
   private keyId: string;
   private localPublicKey: CryptoKey | null;
