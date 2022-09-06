@@ -1,4 +1,4 @@
-import JWTSigner from '../index';
+import { JWTSigner } from '../index';
 import {
   GetPublicKeyCommand,
   KMSClient,
