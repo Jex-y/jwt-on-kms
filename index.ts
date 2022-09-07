@@ -103,7 +103,7 @@ export class JWTSigner {
       throw new Error('Failed to sign the payload');
     };
 
-    if (!result.Signature) {
+    if (!result?.Signature) {
       throw new Error('Failed to sign the payload');
     }
 

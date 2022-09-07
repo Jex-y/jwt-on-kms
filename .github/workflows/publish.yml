@@ -4,10 +4,15 @@
 name: Release
 
 on:
-  workflow_dispatch:
+  push:
+    branches: ['main']
 
 jobs:
+  test:
+    uses: Jex-y/jwt-on-kms/.github/workflows/test.yml@main
+
   build:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,7 +30,7 @@ jobs:
           path: dist
 
   release:
-    needs: build
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
