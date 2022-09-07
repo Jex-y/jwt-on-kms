@@ -87,17 +87,21 @@ export class JWTSigner {
       throw new Error('Message must be less than 4096 bytes');
     }
 
-    const result = await this.client
-      .send(
-        new SignCommand({
-          KeyId: this.keyId,
-          Message: messageBuffer,
-          SigningAlgorithm: algorithm,
-        })
-      )
-      .catch((err) => {
-        throw new Error('Failed to sign the payload');
-      });
+    let result;
+
+    try {
+      result = await this.client
+        .send(
+          new SignCommand({
+            KeyId: this.keyId,
+            Message: messageBuffer,
+            SigningAlgorithm: algorithm,
+          })
+        )
+    } catch (err) {
+      console.warn(err);
+      throw new Error('Failed to sign the payload');
+    };
 
     if (!result.Signature) {
       throw new Error('Failed to sign the payload');
@@ -154,6 +158,7 @@ export class JWTSigner {
     try {
       payload = JSON.parse(Buffer.from(payloadString, 'base64url').toString());
     } catch (err) {
+      console.warn(err);
       return {
         isValid: false,
         error: 'Invalid payload',
