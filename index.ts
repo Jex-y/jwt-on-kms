@@ -3,6 +3,7 @@ import {
   GetPublicKeyCommand,
   SignCommand,
   SigningAlgorithmSpec,
+  SignCommandOutput,
 } from '@aws-sdk/client-kms';
 import { webcrypto } from 'crypto';
 
@@ -59,10 +60,13 @@ export class JWTSigner {
       expiresIn?: number;
       expiresAt?: Date;
       algorithm?: SigningAlgorithmSpec;
+      includeIat?: boolean;
+      now?: number,
     }
   ): Promise<string> {
     const {
       algorithm = SigningAlgorithmSpec.RSASSA_PSS_SHA_256,
+      includeIat = true,
       expiresIn,
       expiresAt,
     } = options || {};
@@ -72,10 +76,13 @@ export class JWTSigner {
       typ: 'JWT',
     });
 
+    const now = Math.floor(options?.now || (Date.now() / 1000));
+
     const payloadString = JSON.stringify({
       ...payload,
-      ...(expiresIn && { exp: new Date().getTime() / 1000 + expiresIn }),
-      ...(expiresAt && { exp: expiresAt.getTime() / 1000 }),
+      ...(includeIat && { iat: now }),
+      ...(expiresIn && { exp: now + expiresIn }),
+      ...(expiresAt && { exp: Math.floor(expiresAt.getTime() / 1000) }),
     });
 
     const headerEncoded = Buffer.from(headerString).toString('base64url');
@@ -87,7 +94,7 @@ export class JWTSigner {
       throw new Error('Message must be less than 4096 bytes');
     }
 
-    let result;
+    let result: SignCommandOutput;
 
     try {
       result = await this.client
@@ -98,6 +105,7 @@ export class JWTSigner {
             SigningAlgorithm: algorithm,
           })
         )
+
     } catch (err) {
       console.warn(err);
       throw new Error('Failed to sign the payload');

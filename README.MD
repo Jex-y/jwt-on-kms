@@ -25,6 +25,10 @@ const signedToken = sign({
 const { isValid } = verifyOffline(signedToken);
 ```
 
+## Testing
+
+To generate test fixtures, you need to create a KMS key in your AWS account that allows signing and verification with `RSASSA_PSS_SHA_256`. Set the `KMS_KEY_ID` environment variable to the ID of the key and `AWS_REGION` to region the key is in. Then run `yarn generate-fixtures` and then `yarn test`.
+
 ## Bugs
 
 If you find a security vulnerability, please report it privately to me via [email](mailto:edwardjex@live.co.uk). Other bugs should be reported via GitHub.

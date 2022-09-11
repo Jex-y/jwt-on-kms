@@ -10,7 +10,8 @@
     "format": "prettier --write index.ts tests/*.ts",
     "lint": "eslint",
     "build": "rimraf ./dist & tsc",
-    "pretest": "yarn lint"
+    "pretest": "yarn lint",
+    "generate-fixures": "ts-node ./bin/generateTestFixtures.ts"
   },
   "homepage": "https://github.com/Jex-y/jwt-on-kms",
   "bugs": {
@@ -25,17 +26,19 @@
     "kms",
     "aws"
   ],
-  "peerDependencies": {
-    "@aws-sdk/client-kms": "3.137.0"
+  "dependencies": {
+    "@aws-sdk/client-kms": "^3.137.0"
   },
   "devDependencies": {
     "@types/jest": "28.1.6",
     "aws-sdk-client-mock": "1.0.0",
+    "dotenv": "^16.0.2",
     "eslint": "8.22.0",
     "install-peers": "1.0.4",
     "jest": "28.1.3",
     "prettier": "2.7.1",
     "ts-jest": "28.0.7",
+    "ts-node": "^10.9.1",
     "tslint-config-prettier": "1.18.0",
     "typescript": "4.7.4"
   },
