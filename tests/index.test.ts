@@ -15,6 +15,14 @@ type tokenParts = {
   signature: string,
 }
 
+let fixtures;
+
+try {
+  fixtures = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'fixtures.json')).toString());
+} catch {
+  throw new Error('Fixtures not generated, run yarn generate-fixtures');
+}
+
 const {
   now,
   payload,
@@ -31,7 +39,7 @@ const {
   normalTokenParts: tokenParts,
   willExpireToken: string,
   willExpireTokenParts: tokenParts,
-} = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'fixtures.json')).toString());
+} = fixtures
 
 const publicKeyBuffer = Buffer.from(publicKey, 'base64');
 

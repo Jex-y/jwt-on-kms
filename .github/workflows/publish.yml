@@ -45,7 +45,6 @@ jobs:
           node-version: 18
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
-      - run: yarn test
       - run: yarn build
       - name: Upload Build
         uses: actions/upload-artifact@v3.1.0
