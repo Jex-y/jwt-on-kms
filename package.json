@@ -11,7 +11,7 @@
     "lint": "eslint",
     "build": "rimraf ./dist & tsc",
     "pretest": "yarn lint",
-    "generate-fixures": "ts-node ./bin/generateTestFixtures.ts"
+    "generate-fixtures": "ts-node ./bin/generateTestFixtures.ts"
   },
   "homepage": "https://github.com/Jex-y/jwt-on-kms",
   "bugs": {
