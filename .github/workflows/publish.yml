@@ -30,10 +30,9 @@ jobs:
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
       - run: yarn generate-fixtures
-        with:
-          env:
-            AWS_REGION: eu-west-2
-            KMS_KEY_ID: ${{ secrets.KMS_KEY_ID }}
+        env:
+          AWS_REGION: eu-west-2
+          KMS_KEY_ID: ${{ secrets.KMS_KEY_ID }}
       - run: yarn test
 
   build:
