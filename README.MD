@@ -8,22 +8,20 @@ This package is designed to be able to verify JWT tokens offline by first downlo
 ## Usage
 
 ```ts
-import { JWTSigner } from 'jwt-on-kms';
+import { sign, verify } from 'jwt-on-kms';
 import { KMSClient } from '@aws-sdk/client-kms';
 
-const kmsClient = new KMSClient({});
-
-const { sign, verifyOffline } = new JWTSigner(
-  kmsClient,
-  process.env.KMS_KEY_ID
+const signedToken = sign(
+  {
+    hello: 'world',
+  },
+  kmsKeyId
 );
 
-const signedToken = sign({
-  hello: 'world',
-});
-
-const { isValid } = verifyOffline(signedToken);
+const { isValid } = verify(signedToken, kmsKeyId);
 ```
+
+To use a custom client / use client options call `setClient(yourClient)`.
 
 ## Testing
 

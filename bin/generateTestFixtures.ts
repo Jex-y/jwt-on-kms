@@ -3,7 +3,7 @@ dotenv.config();
 import { KMSClient, GetPublicKeyCommand } from '@aws-sdk/client-kms';
 import fs from 'fs';
 import path from 'path'
-import { JWTSigner } from '../index';
+import { sign } from '../index';
 
 const { KMS_KEY_ID, AWS_REGION } = process.env;
 
@@ -19,13 +19,12 @@ const publicKeyPromise = client.send(new GetPublicKeyCommand({
   KeyId: KMS_KEY_ID,
 })).then((result) => result.PublicKey)
 
-const jwtSigner = new JWTSigner(client, KMS_KEY_ID);
 
 const now = new Date();
 
-const normalTokenPromise = jwtSigner.sign(payload, { now: now.getTime() / 1000 });
+const normalTokenPromise = sign(payload, KMS_KEY_ID, { now: now.getTime() / 1000 });
 
-const willExpireTokenPromise = jwtSigner.sign(payload, {
+const willExpireTokenPromise = sign(payload, KMS_KEY_ID, {
   expiresAt: new Date(now.getTime() - 5000),
   now: (now.getTime() / 1000) - 10,
 });
