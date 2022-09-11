@@ -9,7 +9,32 @@ on:
 
 jobs:
   test:
-    uses: Jex-y/jwt-on-kms/.github/workflows/test.yml@main
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: eu-west-2
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - run: yarn generate-fixtures
+        with:
+          env:
+            AWS_REGION: eu-west-2
+            KMS_KEY_ID: ${{ secrets.KMS_KEY_ID }}
+      - run: yarn test
 
   build:
     needs: [test]
